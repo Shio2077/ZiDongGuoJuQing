@@ -17,7 +17,7 @@ def resource_path(relative_path):
 
 botm_pic = cv2.imread(resource_path('2.jpg'))
 bubb_pic = cv2.imread(resource_path('3.jpg'))
-THRESHOLD = 0.9
+THRESHOLD = 0.75
 
 
 def mainLoop():
@@ -28,7 +28,7 @@ def mainLoop():
 
     # 获取对话状态截图
     #bott_pic = ImageGrab.grab(bbox=(300, 0, 500, 100))
-    bott_pic = ImageGrab.grab(bbox=(300, 0, 800, 400))
+    bott_pic = ImageGrab.grab(bbox=(0, 0, 300, 200))
 
     ## debug
     #bott_pic.save('bott_pic.jpg')
