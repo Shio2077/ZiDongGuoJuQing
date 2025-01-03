@@ -28,4 +28,4 @@ Update (2025/1/3): Added automatic detection of dialogue bubbles, which can auto
 
 更新：加入了build.py，使用python3 build.py可自动打包成exe文件，可以发送给你的好友~前提是装了pyinstaller。
 
-更新（2025/1/3)：自动识别对话气泡，能够自动点击气泡。，适用于2k分辨率屏幕。
+更新（2025/1/3)：自动识别对话气泡，能够自动点击气泡。适用于2k分辨率屏幕。对于多屏或者笔记本屏幕(?)，可能点不到气泡，因为win32api的cursor函数使用的坐标和窗口坐标会不一致。我在笔记本上玩时需要对max_loc乘以0.5711得到cursor使用的坐标。

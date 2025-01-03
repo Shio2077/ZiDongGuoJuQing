@@ -10,6 +10,8 @@ from random import random               # python自带 不用安装
 import win32api
 import os, sys
 
+THRESHOLD = 0.75
+SCALE_CONST = 1 # 0.5711 # 当你发现鼠标和气泡位置不对应时，可以尝试调整这个值。
 def resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
@@ -17,7 +19,7 @@ def resource_path(relative_path):
 
 botm_pic = cv2.imread(resource_path('2.jpg'))
 bubb_pic = cv2.imread(resource_path('3.jpg'))
-THRESHOLD = 0.75
+
 
 
 def mainLoop():
@@ -50,13 +52,13 @@ def mainLoop():
         screen_np = numpy.asarray(screen)
         result_screen = cv2.matchTemplate(screen_np, bubb_pic, cv2.TM_CCOEFF_NORMED)
         min_conf_1, max_conf_1, min_loc, max_loc = cv2.minMaxLoc(result_screen)
-        #print('result of screen check.min_max:', (min_conf_1, max_conf_1, min_loc, max_loc))
+        print('气泡图片相似比较结果.min_max:', (min_conf_1, max_conf_1, min_loc, max_loc))
         # 输出感兴趣位置的坐标
         if max_conf_1 > THRESHOLD:
-            print(f'发现对话气泡，点击气泡: {max_loc}')
             # 将鼠标移动到 max_loc 位置并模拟点击
-            x = int(0.5711 * max_loc[0])
-            y = int(0.5711 * max_loc[1])
+            x = int(SCALE_CONST*max_loc[0])
+            y = int(SCALE_CONST*max_loc[1])
+            print(f'发现对话气泡，点击气泡: {x, y}')
             ctypes.windll.user32.SetCursorPos(x + 10, y + 10)
             ctypes.windll.user32.mouse_event(2, 0, 0, 0, 0)  # 按下左键
             time.sleep(0.05 + 0.1 * random())
