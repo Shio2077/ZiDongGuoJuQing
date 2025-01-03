@@ -17,7 +17,7 @@ def resource_path(relative_path):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
 
-botm_pic = cv2.imread(resource_path('2.jpg'))
+botm_pic = cv2.imread(resource_path('444.jpg'))
 bubb_pic = cv2.imread(resource_path('3.jpg'))
 
 
@@ -30,7 +30,7 @@ def mainLoop():
 
     # 获取对话状态截图
     #bott_pic = ImageGrab.grab(bbox=(300, 0, 500, 100))
-    bott_pic = ImageGrab.grab(bbox=(0, 0, 300, 200))
+    bott_pic = ImageGrab.grab(bbox=(0, 0, 500, 300))
 
     ## debug
     #bott_pic.save('bott_pic.jpg')
